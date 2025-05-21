@@ -71,7 +71,7 @@ public class WebhookSqlServiceImpl implements WebhookSqlService {
         try {
             WebHookRequest request = WebHookRequest
                     .builder()
-                    .name("Vishakha Saini")
+                    .name("Vishaka Saini")
                     .regNo("REG1292240176")
                     .email("vishaka.saini@mitwpu.edu.in")
                     .build();
