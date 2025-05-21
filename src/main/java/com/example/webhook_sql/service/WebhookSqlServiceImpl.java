@@ -7,7 +7,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ResourceLoader;
-import org.springframework.http.*;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -54,7 +57,7 @@ public class WebhookSqlServiceImpl implements WebhookSqlService {
 
             QueryDto queryDto = QueryDto.builder().finalQuery(sqlQuery).build();
             HttpEntity<QueryDto> requestEntity = new HttpEntity<>(queryDto, httpHeaders);
-            ResponseEntity<String> responseEntity = restTemplate.exchange(testWebhookUrl, HttpMethod.POST, requestEntity, String.class);
+            restTemplate.exchange(testWebhookUrl, HttpMethod.POST, requestEntity, String.class);
         } catch (Exception e) {
             throw new RuntimeException("Failed to submit query with error = " + e.getMessage(), e);
         }
